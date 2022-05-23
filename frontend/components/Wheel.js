@@ -4,16 +4,25 @@ import { connect } from 'react-redux'
 
  function Wheel(props) {
    console.log(props.initWheel)
-  const [state, setState] = useState({
-    currentItem: props.initWheel.currentItem,
-    wheel: props.initWheel.wheel,
-  })
-  console.log(state.wheel)
+
+  const { moveClockwise, moveCounterClockwise, initWheel } = props
+ 
+
+
+  const handleClockwise = () => {
+    console.log(props.initWheel)
+    moveClockwise(props.initWheel.currentItem)
+  }
+
+  const handleCounterClockwise = () => {
+    console.log(props.initWheel)
+    moveCounterClockwise(props.initWheel.currentItem)
+  }
 
   return (
     <div id="wrapper">
       <div id="wheel">
-        {state.wheel.map((item, id) => 
+        {initWheel.wheel.map((item, id) => 
           <div 
             key={id} className={`cog ${item ==='B' ? 'active' : ''}`} style={{ "--i": id}}>{item}
           </div>)}
@@ -21,16 +30,17 @@ import { connect } from 'react-redux'
        
       </div>
       <div id="keypad">
-        <button id="counterClockwiseBtn" >Counter clockwise</button>
-        <button id="clockwiseBtn">Clockwise</button>
+        <button id="counterClockwiseBtn" onClick={handleCounterClockwise}>Counter clockwise</button>
+        <button id="clockwiseBtn" onClick={handleClockwise}>Clockwise</button>
       </div>
     </div>
   )
 }
 
-function mapStateToProps(wheelState) {
+function mapStateToProps(state) {
+  console.log(state)
   return {
-    initWheel: wheelState.wheel
+    initWheel: state.wheel,
   }
 }
 
