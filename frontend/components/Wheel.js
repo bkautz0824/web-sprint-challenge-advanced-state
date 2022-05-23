@@ -1,15 +1,24 @@
-import React from 'react'
+import { moveClockwise, moveCounterClockwise } from '../state/action-creators'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 
-export default function Wheel(props) {
+ function Wheel(props) {
+   console.log(props.initWheel)
+  const [state, setState] = useState({
+    currentItem: props.initWheel.currentItem,
+    wheel: props.initWheel.wheel,
+  })
+  console.log(state.wheel)
+
   return (
     <div id="wrapper">
       <div id="wheel">
-        <div className="cog active" style={{ "--i": 0 }}>B</div>
-        <div className="cog" style={{ "--i": 1 }}></div>
-        <div className="cog" style={{ "--i": 2 }}></div>
-        <div className="cog" style={{ "--i": 3 }}></div>
-        <div className="cog" style={{ "--i": 4 }}></div>
-        <div className="cog" style={{ "--i": 5 }}></div>{/* --i is a custom CSS property, no need to touch that nor the style object */}
+        {state.wheel.map((item, id) => 
+          <div 
+            key={id} className={`cog ${item ==='B' ? 'active' : ''}`} style={{ "--i": id}}>{item}
+          </div>)}
+        
+       
       </div>
       <div id="keypad">
         <button id="counterClockwiseBtn" >Counter clockwise</button>
@@ -18,3 +27,12 @@ export default function Wheel(props) {
     </div>
   )
 }
+
+function mapStateToProps(wheelState) {
+  return {
+    initWheel: wheelState.wheel
+  }
+}
+
+
+export default connect(mapStateToProps, {moveClockwise, moveCounterClockwise})(Wheel)
