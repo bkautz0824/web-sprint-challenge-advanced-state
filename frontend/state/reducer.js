@@ -10,7 +10,6 @@ const initialWheelState = {
 function wheel(state = initialWheelState, action) {
   switch(action.type) {
     case MOVE_CLOCKWISE:  {
-      console.log(action.payload)
       const item = action.payload
       // const newState = {currentItem: 0, wheel:[]};
       if(item === 0){
@@ -45,13 +44,40 @@ function wheel(state = initialWheelState, action) {
   return state
 }
 
-const initialQuizState = null
+const initialQuizState = {
+  id: "",
+  question: "",
+  questionId: "",
+  answer1: [],
+  answer2: [],
+  loaded: false
+}
 function quiz(state = initialQuizState, action) {
+    switch(action.type) {
+      case SET_QUIZ_INTO_STATE: {
+        const quizInfo = action.payload.data;
+        return {...state, 
+          id: quizInfo.quiz_id, 
+          question: quizInfo.question, 
+          answer1: quizInfo.answers[0], 
+          answer2: quizInfo.answers[1],
+          loaded: true
+      }
+      }
+    }
   return state
 }
 
-const initialSelectedAnswerState = null
+const initialSelectedAnswerState = {
+  id:"",
+}
 function selectedAnswer(state = initialSelectedAnswerState, action) {
+  switch(action.type) {
+    case SET_SELECTED_ANSWER: {
+      const id = action.payload;
+      console.log(id)
+    }
+  }
   return state
 }
 

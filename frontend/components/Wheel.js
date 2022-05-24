@@ -1,21 +1,19 @@
 import { moveClockwise, moveCounterClockwise } from '../state/action-creators'
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
  function Wheel(props) {
-   console.log(props.initWheel)
 
-  const { moveClockwise, moveCounterClockwise, initWheel } = props
+const { moveClockwise, moveCounterClockwise, initWheel } = props
  
 
 
   const handleClockwise = () => {
-    console.log(props.initWheel)
+    
     moveClockwise(props.initWheel.currentItem)
   }
 
   const handleCounterClockwise = () => {
-    console.log(props.initWheel)
     moveCounterClockwise(props.initWheel.currentItem)
   }
 
@@ -38,7 +36,6 @@ import { connect } from 'react-redux'
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     initWheel: state.wheel,
   }
