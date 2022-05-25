@@ -55,14 +55,11 @@ export function resetForm() {
 
 // ❗ Async action creators 
 export function fetchQuiz() {
-  console.log("fetchQuiz")
   return function (dispatch) {
-    console.log("innerfunction")
     dispatch(setQuiz())
     axios
       .get(`http://localhost:9000/api/quiz/next`)
       .then(res => {
-        console.log(res)
         dispatch({type:SET_QUIZ_INTO_STATE, payload: res.data})
       })
       .catch(err => {
@@ -83,11 +80,9 @@ export function postAnswer(answer) {
     axios
     .post(`http://localhost:9000/api/quiz/answer`, answer)
     .then(res => {
-      console.log(res.data)
       dispatch({type:SET_SELECTED_ANSWER, payload: ""})
       dispatch({type:SET_INFO_MESSAGE, payload: res.data.message})
       dispatch(fetchQuiz())
-      
       
     })
     .catch(err => {

@@ -3,11 +3,8 @@ import { connect } from 'react-redux'
 import { fetchQuiz, setQuiz, postAnswer, selectAnswer } from '../state/action-creators'
 
  function Quiz(props) {
-console.log(props.quizState)
-console.log(props.answerState)
   
   
-
   useEffect(() => {
     if(!props.quizState){
     props.fetchQuiz()
