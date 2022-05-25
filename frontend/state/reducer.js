@@ -51,7 +51,6 @@ function quiz(state = initialQuizState, action) {
       case SET_QUIZ_INTO_STATE: {
         
         if(action.payload){
-        console.log(action.payload)
         
         return action.payload
        }
@@ -68,7 +67,6 @@ const initialSelectedAnswerState = {
 function selectedAnswer(state = initialSelectedAnswerState, action) {
   switch(action.type) {
     case SET_SELECTED_ANSWER: {
-      console.log(action.payload)
       if(action.payload !== ""){
       return {...state, id: action.payload, isSelected: true}
       }
@@ -84,7 +82,6 @@ const initialMessageState = ''
 function infoMessage(state = initialMessageState, action) {
   switch(action.type) {
     case SET_INFO_MESSAGE: {
-      console.log(action.payload)
       return action.payload
     }
   }
@@ -99,7 +96,6 @@ const initialFormState = {
 function form(state = initialFormState, action) {
   switch(action.type){
   case INPUT_CHANGE: {
-    console.log(action.payload)
     if(action.payload.id === "newQuestion"){
       return {...state, newQuestion: action.payload.value}
     }
